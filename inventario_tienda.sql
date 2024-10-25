@@ -60,3 +60,24 @@ INSERT INTO Proveedores (nombre, direccion, telefono) VALUES
 INSERT INTO Compras (proveedor_id, producto_id, fecha_compra, cantidad) VALUES 
 (1, 1, '2024-10-23', 100),
 (2, 3, '2024-10-23', 50);
+
+-- Listar todos los productos
+SELECT * FROM Productos;
+
+-- Consultar stock de productos
+SELECT nombre, stock FROM Productos;
+
+-- Ver información de proveedores
+SELECT * FROM Proveedores;
+
+-- Consultar compras realizadas
+SELECT C.compra_id, P.nombre AS Proveedor, PR.nombre AS Producto, C.fecha_compra, C.cantidad
+FROM Compras C
+JOIN Proveedores P ON C.proveedor_id = P.proveedor_id
+JOIN Productos PR ON C.producto_id = PR.producto_id;
+
+-- Buscar productos por categoría
+SELECT PR.nombre, PR.descripcion, PR.precio, C.nombre AS Categoria
+FROM Productos PR
+JOIN Categorias C ON PR.categoria_id = C.categoria_id
+WHERE C.nombre = 'Electrónica';
